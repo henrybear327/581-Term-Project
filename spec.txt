@@ -1,0 +1,3 @@
+Write tests first(test-driven coding)
+Write spec first, know what to input and what to expect, even the algorithm will
+be used
