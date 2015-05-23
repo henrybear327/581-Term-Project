@@ -1,0 +1,10 @@
+Write tests first(test-driven coding)
+Write spec first, know what to input and what to expect, even the algorithm will
+be used
+
+A simple database system
+至少包含Insert, delete, edit, search, write to file, read from file等功能
+基本要求: malloc, string, struct, source code in multiple files
+查詢和運算功能自己設計，越多越好
+參考p. 434但不一定要使用link list
+
