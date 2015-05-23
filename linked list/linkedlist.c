@@ -52,13 +52,10 @@ void show_nodes(Node *head)
 
 int list_length(Node *head)
 {
-    if (head == NULL)
-        return 0;
-
-    int length = 1;
-    while (head->next != NULL) {
-        length++;
+    int count = 0;
+    while (head != NULL) {
+        count++;
         head = head->next;
     }
-    return length;
+    return count;
 }
