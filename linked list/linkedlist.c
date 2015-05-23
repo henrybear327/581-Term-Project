@@ -46,3 +46,16 @@ void show_nodes(Node *head)
     }
     return;
 }
+
+int list_length(Node *head)
+{
+    if (head == NULL)
+        return 0;
+
+    int length = 1;
+    while (head->next != NULL) {
+        length++;
+        head = head->next;
+    }
+    return length;
+}

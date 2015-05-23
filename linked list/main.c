@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
+#define DEBUG 1 //test this later
+
 int main()
 {
     test();
@@ -20,6 +22,7 @@ int main()
             create_node(&tail, input);
         }
         show_nodes(head);
+        printf("length is %d\n", list_length(head));
     }
 
     return 0;

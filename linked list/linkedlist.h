@@ -11,7 +11,7 @@ struct node {
 };
 
 // Get the length of the linked list
-// int length(Node *head);
+int list_length(Node *head);
 
 // create new node and update the second-to-last node pointer
 void create_node(Node **, int);
