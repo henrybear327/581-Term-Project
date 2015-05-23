@@ -1,0 +1,3 @@
+Use makefile
+Use formatter in makefile
+Check home to rename .o file
