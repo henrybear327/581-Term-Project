@@ -1,4 +1,6 @@
 *.o
 *.out
 *.c.orig
+*.h.orig
 *.h.gch
+
