@@ -11,10 +11,10 @@ A simple database system
 
 int main()
 {
-	print_hello_world();
-	printf("%d\n", add_integers(1, 2));	
-	print_hello_world();
-	printf("%d\n", add_integers(4, 2));
+    print_hello_world();
+    printf("%d\n", add_integers(1, 2));
+    print_hello_world();
+    printf("%d\n", add_integers(4, 2));
 
-	return 0;
+    return 0;
 }

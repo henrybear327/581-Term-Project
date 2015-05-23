@@ -16,7 +16,9 @@ test: main.o hello_world.o
 	clang-3.5 -o test.o main.o hello_world.o 
 
 main.o: main.c hello_world.h hello_world.c
+	clang-format-3.5 -i -style=LLVM  main.c && astyle --style=linux main.c
 	clang-3.5 -c -Wall -Wextra main.c
 
 hello_world.o: hello_world.h hello_world.c
+	clang-format-3.5 -i -style=LLVM  hello_world.c && astyle --style=linux hello_world.c
 	clang-3.5 -c -Wall -Wextra hello_world.c
