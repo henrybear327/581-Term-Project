@@ -12,6 +12,7 @@ main.o: main.c linkedlist.h
 	clang-format-3.5 -i -style=LLVM  main.c && astyle --style=linux main.c
 	clang-3.5 -c -Wall -Wextra main.c
 
+#https://www.gnu.org/software/make/manual/html_node/Cleanup.html
 .PHONY: clean
 clean:
 	-rm *.o *.c.orig *.h.gch
