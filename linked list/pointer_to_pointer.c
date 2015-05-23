@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//clang-format-3.5 -i -style=LLVM  pointer_to_pointer.c && astyle --style=linux pointer_to_pointer.c  && clang-3.5 -Wall -Wextra pointer_to_pointer.c -o pointer && ./pointer 
 int main()
 {
     int x = 5;
