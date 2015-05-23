@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-#define DEBUG 1 //test this later
+#define DEBUG 1 // test this later
 
 int main()
 {
