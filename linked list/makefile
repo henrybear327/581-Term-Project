@@ -15,4 +15,4 @@ main.o: main.c linkedlist.h
 #https://www.gnu.org/software/make/manual/html_node/Cleanup.html
 .PHONY: clean
 clean:
-	-rm *.o *.c.orig *.h.gch
+	-rm *.o *.c.orig *.h.gch *.h.orig
