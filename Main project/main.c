@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "getInput.h"
+#include "linkedList.h"
+#include "queue.h"
+
 #define QUALIFIED 1
 #define WAITING_LIST 2
 #define REJECT 3
@@ -50,5 +54,19 @@ struct student {
 
 int main()
 {
+    /*
+    Rule of thumb
+
+    read information from the text file
+
+    所有學生錄取第一志願
+    超額比序，多的進入queue
+    */
+
+    FILE *pStudentData = get_student_txt_fp();
+    show_student_txt(pStudentData);
+    FILE *pDepartmentData = get_department_txt_fp();
+    show_department_txt(pDepartmentData);
+
     return 0;
 }
