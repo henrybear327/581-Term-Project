@@ -31,19 +31,25 @@ FILE *get_department_txt_fp()
 void show_student_txt(FILE *pFile)
 {
     // http://www.cplusplus.com/reference/cstdio/fgetc/
+    printf("---show_student_txt---\n");
     char c = '\0';
     do {
         printf("%c", c);
         c = fgetc(pFile);
     } while (c != EOF);
+    rewind(pFile);
+    printf("---That's all in student.txt----\n");
 }
 
 void show_department_txt(FILE *pFile)
 {
     // http://www.cplusplus.com/reference/cstdio/fgetc/
+    printf("---show_department_txt---\n");
     char c = '\0';
     do {
         printf("%c", c);
         c = fgetc(pFile);
     } while (c != EOF);
+    rewind(pFile);
+    printf("---That's all in department.txt---\n");
 }

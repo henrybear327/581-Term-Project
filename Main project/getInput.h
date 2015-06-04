@@ -24,5 +24,4 @@ Show all data in department.txt
 */
 void show_department_txt(FILE *pFile);
 
-
 #endif
