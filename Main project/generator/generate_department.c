@@ -3,9 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-/*clang-format-3.5 -i -style=LLVM  generate_student.c && astyle --style=linux
- * generate_student.c && clang -Wall -Wextra generate_student.c
- * -ogenerate_student.o*/
+/*clang-format-3.5 -i -style=LLVM  generate_department.c && astyle --style=linux
+ * generate_department.c && clang -Wall -Wextra generate_department.c -o
+ * generate_department.o*/
 
 int main()
 {
