@@ -1,5 +1,10 @@
-0001 omit 10
-0002 omit 10
-0003 omit 10
-0004 omit 10
-0005 omit 10
+ 1000 omit  5
+ 1001 omit 14
+ 1002 omit 13
+ 1003 omit  9
+ 1004 omit  7
+ 1005 omit  9
+ 1006 omit 11
+ 1007 omit 14
+ 1008 omit 16
+ 1009 omit  4

@@ -14,7 +14,7 @@ typedef struct department Department;
 
 struct result { //放榜結果 系所,正/備/未錄取
     long long int department_ID;
-    int result_state;
+    // int result_state;
 };
 
 struct grade { //學測成績
@@ -29,7 +29,7 @@ struct grade { //學測成績
 
 struct department { //系所資料
     // to-do 錄取計算方式
-    long long int ID;
+    long long int ID; //max 5 digits
     char name[NAME_SIZE];
 
     int quota;
@@ -41,8 +41,8 @@ struct student {
     char name[NAME_SIZE];
 
     Grade grade;
-    Department choice[6]; // 志願序
-    int current_result;   //目前跑到第幾志願
+    Result choice[6];   // 志願序
+    int current_result; //目前跑到第幾志願
 
     Student *next;
 };

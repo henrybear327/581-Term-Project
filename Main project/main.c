@@ -31,7 +31,9 @@ int main()
     Student *head = NULL;
     head = enqueue_all_student_records(pStudentData);
 
+#if DEBUG
     show_queue(head);
+#endif
 
     // program ending, clean up
     if (fclose(pStudentData) == EOF)
