@@ -29,7 +29,7 @@ struct grade { //學測成績
 
 struct department { //系所資料
     // to-do 錄取計算方式
-    long long int ID; //max 5 digits
+    long long int ID; // max 5 digits
     char name[NAME_SIZE];
 
     int quota;

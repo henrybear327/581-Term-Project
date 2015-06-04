@@ -28,11 +28,17 @@ int main()
 #endif
 
     // read all student data to queue
-    Student *head = NULL;
+    Student *head = NULL; // head == null --> empty
     head = enqueue_all_student_records(pStudentData);
 
 #if DEBUG
     show_queue(head);
+
+    while (head) {
+        printf("Pop a node out from queue\n");
+        head = pop(head);
+        show_queue(head);
+    }
 #endif
 
     // program ending, clean up

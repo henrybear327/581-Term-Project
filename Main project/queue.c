@@ -78,14 +78,23 @@ void show_queue(Student *head)
 {
     printf("---showing queue---\n");
     while (head) {
-        printf(
-            "%15lld %s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld\n",
-            head->ID, head->name, head->grade.chinese, head->grade.english,
-            head->grade.math, head->grade.social_science, head->grade.science,
-            head->choice[0].department_ID, head->choice[1].department_ID,
-            head->choice[2].department_ID, head->choice[3].department_ID,
-            head->choice[4].department_ID, head->choice[5].department_ID);
+        printf("%15lld %s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld "
+               "%d\n",
+               head->ID, head->name, head->grade.chinese, head->grade.english,
+               head->grade.math, head->grade.social_science, head->grade.science,
+               head->choice[0].department_ID, head->choice[1].department_ID,
+               head->choice[2].department_ID, head->choice[3].department_ID,
+               head->choice[4].department_ID, head->choice[5].department_ID,
+               head->current_result);
         head = head->next;
     }
     printf("---That's all in the queue---\n");
+}
+
+Student *pop(Student *head)
+{
+    Student *next = head->next;
+    free(head);
+
+    return next;
 }
