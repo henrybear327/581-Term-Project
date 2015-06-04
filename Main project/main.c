@@ -28,10 +28,16 @@ int main()
 #endif
 
     // read all student data to queue
-    Student *newNode = malloc(sizeof(Student));
-    
-    
-    Student *head, *tail;
+    Student *head = NULL;
+    head = enqueue_all_student_records(pStudentData);
+
+    show_queue(head);
+
+    // program ending, clean up
+    if (fclose(pStudentData) == EOF)
+        printf("Error closing pStudentData\n");
+    if (fclose(pDepartmentData) == EOF)
+        printf("Error closing pDepartmentData\n");
 
     return 0;
 }

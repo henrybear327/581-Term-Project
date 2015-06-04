@@ -37,7 +37,7 @@ struct department { //系所資料
 };
 
 struct student {
-    long long int student;
+    long long int ID;
     char name[NAME_SIZE];
 
     Grade grade;
@@ -46,5 +46,8 @@ struct student {
 
     Student *next;
 };
+
+#define CALLOC_ERROR                                                           \
+  printf("calloc() fails on line %d in file %s\n", __LINE__, __FILE__)
 
 #endif
