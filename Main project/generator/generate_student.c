@@ -35,14 +35,36 @@ int main()
     int quantity;
     scanf("%d", &quantity);
 
-    printf("ID starting with? ");
+    printf("Student ID starting with? ");
     long long int ID;
     scanf("%lld", &ID);
 
+    printf("How many department is available? ");
+    int department;
+    scanf("%d", &department);
+    printf("Department ID starting with? ");
+    long long int department_ID;
+    scanf("%lld", &department_ID);
+
     for (int i = 0; i < quantity; i++) {
+        int book[department];
+        long long int result[6] = { 0 };
+        memset(book, 0, sizeof(book));
+        for (int i = 0; i < department && i < 6; i++) {
+            int temp = rand() % department;
+            if (book[temp] == 0) {
+                book[temp] = 1;
+                result[i] = temp + department_ID;
+            } else {
+                i--;
+            }
+        }
         // student name default omit
-        fprintf(pFile, "%15lld omit %2d %2d %2d %2d %2d\n", ID++, rand() % 16,
-                rand() % 16, rand() % 16, rand() % 16, rand() % 16);
+        fprintf(pFile,
+                "%15lld omit %2d %2d %2d %2d %2d %lld %lld %lld %lld %lld %lld\n",
+                ID++, rand() % 16, rand() % 16, rand() % 16, rand() % 16,
+                rand() % 16, result[0], result[1], result[2], result[3], result[4],
+                result[5]);
     }
 
     fclose(pFile);
