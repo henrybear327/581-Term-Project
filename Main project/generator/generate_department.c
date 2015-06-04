@@ -42,7 +42,7 @@ int main()
     scanf("%d", &quota);
 
     for (int i = 0; i < department; i++) {
-        fprintf(pFile, "%15lld omit %2d\n", department_ID++, rand() % quota);
+        fprintf(pFile, "%5lld omit %2d\n", department_ID++, rand() % (quota) + 1);
     }
 
     fclose(pFile);
