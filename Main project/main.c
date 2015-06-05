@@ -38,6 +38,7 @@ int main()
     show_queue(student_head);
 
     /*
+    //try queue pop()
     while (student_head) {
         printf("Pop a node out from queue\n");
         student_head = pop(student_head);
@@ -53,7 +54,7 @@ int main()
     show_all_node(department_head);
 #endif
 
-    // query system
+    // query system UI
     printf("Before processing data, what do you want to do?\n");
     printf("(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
            "all(from file), \n"
@@ -77,7 +78,7 @@ int main()
             char c;
             long long int ID;
             scanf("%c", &c);
-            printf("ID? ");
+            printf("ID to modify? ");
             scanf("%lld", &ID);
             getchar();
             /*
@@ -101,11 +102,12 @@ int main()
                 search_node(c, department_head, ID);
         } else if (choice[0] == 'W' || choice[0] == 'w') {
             clear_screen();
-            printf("Save file! Save (S)tudent or (D)epartment data to new file?\n>>");
+            printf("Save file! Save (S)tudent or (D)epartment data to file?\n>>");
             char c;
             scanf("%c", &c);
             getchar();
             if (c == 's' || c == 'S') {
+                // close FILE stream first, and then get new one from the function
                 fclose(pStudentData);
                 pStudentData = save_student_data(student_head);
             } else if (c == 'd' || c == 'D') {
@@ -119,6 +121,7 @@ int main()
             scanf("%c", &c);
             getchar();
             if (c == 's' || c == 'S') {
+                // reopen FLIE stream to get latest data
                 fclose(pStudentData);
                 pStudentData = get_student_txt_fp();
                 show_student_txt(pStudentData);
@@ -129,7 +132,7 @@ int main()
             }
         } else {
             clear_screen();
-            printf("continuing......\n");
+            printf("Let's move on......\n");
             break;
         }
         printf(
