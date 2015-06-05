@@ -8,3 +8,9 @@ A simple database system
 查詢和運算功能自己設計，越多越好
 參考p. 434但不一定要使用link list
 
+programming notes
+
+initial condition
+    all of the student data is in queue
+    all of the department data is in a linked list
+    

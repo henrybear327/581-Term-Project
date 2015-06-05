@@ -55,17 +55,39 @@ int main()
 
     // query system
     printf("Before processing data, what do you want to do?\n");
-    printf("(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, or press "
-           "any other key to continue...\n>>");
+    printf("(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
+           "all(from file), \n"
+           "or press any other key to continue...\n>>");
     char choice[100];
     while (1) {
         fgets(choice, 100, stdin);
         if (choice[0] == 'I' || choice[0] == 'i') {
+            clear_screen();
             printf("Insert! Insert (S)tudent or (D)epartment?\n>>");
+
+            // reload data data
         } else if (choice[0] == 'D' || choice[0] == 'd') {
+            clear_screen();
             printf("Delete! Delete (S)tudent or (D)epartment?\n>>");
+            // reload data
         } else if (choice[0] == 'E' || choice[0] == 'e') {
+            clear_screen();
             printf("Edit! Edit (S)tudent or (D)epartment?\n>>");
+
+            char c;
+            long long int ID;
+            scanf("%c", &c);
+            printf("ID? ");
+            scanf("%lld", &ID);
+            getchar();
+            /*
+            if (c == 's' || c == 'S')
+                // edit
+                else if (c == 'd' || c == 'D')
+                    // edit
+            */
+
+            // reload data
         } else if (choice[0] == 'S' || choice[0] == 's') {
             clear_screen();
             printf("Search! Search (S)tudent or (D)epartment by ID?\n>>");
@@ -78,13 +100,41 @@ int main()
             else if (c == 'd' || c == 'D')
                 search_node(c, department_head, ID);
         } else if (choice[0] == 'W' || choice[0] == 'w') {
+            clear_screen();
             printf("Save file! Save (S)tudent or (D)epartment data to new file?\n>>");
+            char c;
+            scanf("%c", &c);
+            getchar();
+            if (c == 's' || c == 'S') {
+                fclose(pStudentData);
+                pStudentData = save_student_data(student_head);
+            } else if (c == 'd' || c == 'D') {
+                fclose(pDepartmentData);
+                pDepartmentData = save_department_data(department_head);
+            }
+        } else if (choice[0] == 'L' || choice[0] == 'l') {
+            clear_screen();
+            printf("List all data! List (S)tudent or (D)epartment data?\n>>");
+            char c;
+            scanf("%c", &c);
+            getchar();
+            if (c == 's' || c == 'S') {
+                fclose(pStudentData);
+                pStudentData = get_student_txt_fp();
+                show_student_txt(pStudentData);
+            } else if (c == 'd' || c == 'D') {
+                fclose(pDepartmentData);
+                pDepartmentData = get_department_txt_fp();
+                show_department_txt(pDepartmentData);
+            }
         } else {
+            clear_screen();
             printf("continuing......\n");
             break;
         }
-        printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, or press "
-               "any other key to continue...\n>>");
+        printf(
+            "(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist all, \n"
+            "or press any other key to continue...\n>>");
     }
 
     // program ending, clean up

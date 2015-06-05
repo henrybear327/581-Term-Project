@@ -2,6 +2,8 @@
 #define GETINPUT_H
 
 #include <stdio.h>
+#include <stdbool.h>
+
 #include "dataType.h"
 
 /*
@@ -23,5 +25,9 @@ void show_student_txt(FILE *pFile);
 Show all data in department.txt
 */
 void show_department_txt(FILE *pFile);
+
+FILE *save_student_data(Student *head);
+
+FILE *save_department_data(Department *head);
 
 #endif
