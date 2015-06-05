@@ -105,6 +105,18 @@ int main()
             } else if (c == 'd' || c == 'D') {
                 // edit
             }
+        } else if (choice[0] == 'S' || choice[0] == 's') {
+            clear_screen();
+            printf("Search! Search (S)tudent or (D)epartment by ID?\n>>");
+            char c;
+            long long int ID;
+            scanf("%c %lld", &c, &ID);
+            getchar();
+            if (c == 's' || c == 'S')
+                search_node(c, student_head, ID);
+            else if (c == 'd' || c == 'D')
+                search_node(c, department_head, ID);
+
         } else if (choice[0] == 'W' || choice[0] == 'w') {
             is_saved = true;
             clear_screen();
