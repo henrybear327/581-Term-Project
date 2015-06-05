@@ -6,8 +6,11 @@
 #include "linkedList.h"
 #include "queue.h"
 #include "dataType.h"
+#include "utility.h"
 
 #define DEBUG 1
+
+// git log --stat --decorate --pretty=full --graph
 
 int main()
 {
@@ -34,11 +37,13 @@ int main()
 #if DEBUG
     show_queue(student_head);
 
+    /*
     while (student_head) {
         printf("Pop a node out from queue\n");
         student_head = pop(student_head);
         show_queue(student_head);
     }
+    */
 #endif
 
     // read all data from department.txt
@@ -47,6 +52,40 @@ int main()
 #if DEBUG
     show_all_node(department_head);
 #endif
+
+    // query system
+    printf("Before processing data, what do you want to do?\n");
+    printf("(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, or press "
+           "any other key to continue...\n>>");
+    char choice[100];
+    while (1) {
+        fgets(choice, 100, stdin);
+        if (choice[0] == 'I' || choice[0] == 'i') {
+            printf("Insert! Insert (S)tudent or (D)epartment?\n>>");
+        } else if (choice[0] == 'D' || choice[0] == 'd') {
+            printf("Delete! Delete (S)tudent or (D)epartment?\n>>");
+        } else if (choice[0] == 'E' || choice[0] == 'e') {
+            printf("Edit! Edit (S)tudent or (D)epartment?\n>>");
+        } else if (choice[0] == 'S' || choice[0] == 's') {
+            clear_screen();
+            printf("Search! Search (S)tudent or (D)epartment by ID?\n>>");
+            char c;
+            long long int ID;
+            scanf("%c %lld", &c, &ID);
+            getchar();
+            if (c == 's' || c == 'S')
+                search_node(c, student_head, ID);
+            else if (c == 'd' || c == 'D')
+                search_node(c, department_head, ID);
+        } else if (choice[0] == 'W' || choice[0] == 'w') {
+            printf("Save file! Save (S)tudent or (D)epartment data to new file?\n>>");
+        } else {
+            printf("continuing......\n");
+            break;
+        }
+        printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, or press "
+               "any other key to continue...\n>>");
+    }
 
     // program ending, clean up
     if (fclose(pStudentData) == EOF)
