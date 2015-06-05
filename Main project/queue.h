@@ -24,10 +24,10 @@ Push a Student node into the queue and update previously last node accordingly
 */
 void push(Student *node, Student *tail);
 
-//useless : front -> just check the head pointer
-//Student *front(Student *head);
+// useless : front -> just check the head pointer
+// Student *front(Student *head);
 
-//useless : just check if head is NULL
-//bool *is_empty(Student *head);
+// useless : just check if head is NULL
+// bool *is_empty(Student *head);
 
 #endif

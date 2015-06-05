@@ -34,15 +34,15 @@ int main()
     printf("How many department is available? ");
     int department;
     scanf("%d", &department);
-    printf("Department ID starting with? ");
-    long long int department_ID;
-    scanf("%lld", &department_ID);
+    printf("Department ID starting with-> 0\n");
+    long long int department_ID = 0;
+    // scanf("%lld", &department_ID);
     printf("Maximum quota per department? ");
     int quota;
     scanf("%d", &quota);
 
     for (int i = 0; i < department; i++) {
-        fprintf(pFile, "%5lld omit %2d\n", department_ID++, rand() % (quota) + 1);
+        fprintf(pFile, "%5lld omit %2d\n", department_ID++, rand() % (quota)+1);
     }
 
     fclose(pFile);

@@ -76,7 +76,7 @@ Student *enqueue_all_student_records(FILE *pStudentData)
 
 void show_queue(Student *head)
 {
-    printf("---showing queue---\n");
+    printf("---showing queue(front)---\n");
     while (head) {
         printf("%15lld %s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld "
                "%d\n",
@@ -88,7 +88,7 @@ void show_queue(Student *head)
                head->current_result);
         head = head->next;
     }
-    printf("---That's all in the queue---\n");
+    printf("---That's all in the queue(back)---\n");
 }
 
 Student *pop(Student *head)
