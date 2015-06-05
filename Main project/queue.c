@@ -106,7 +106,7 @@ void edit_student_data(Student *head, long long int ID)
     while (head) {
         if (head->ID == ID) {
             // change this record
-            printf("Changing data of ID = %lld\n", ID);
+            printf("Changing data of student ID = %lld\n", ID);
             printf("New name? (Current: %s) ", head->name);
             fgets(head->name, NAME_SIZE, stdin);
             // get rid of \n
@@ -134,5 +134,5 @@ void edit_student_data(Student *head, long long int ID)
         head = head->next;
     }
 
-    printf("ID %lld doesn't exit!\n", ID);
+    printf("Student ID %lld doesn't exit!\n", ID);
 }

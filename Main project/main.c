@@ -103,7 +103,9 @@ int main()
             if (c == 's' || c == 'S') {
                 edit_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
-                // edit
+                edit_department_data(department_head, ID);
+            } else {
+                printf("Invalid choice\n");
             }
         } else if (choice[0] == 'S' || choice[0] == 's') {
             clear_screen();
@@ -116,7 +118,8 @@ int main()
                 search_node(c, student_head, ID);
             else if (c == 'd' || c == 'D')
                 search_node(c, department_head, ID);
-
+            else
+                printf("Invalid choice\n");
         } else if (choice[0] == 'W' || choice[0] == 'w') {
             is_saved = true;
             clear_screen();
@@ -131,6 +134,8 @@ int main()
             } else if (c == 'd' || c == 'D') {
                 fclose(pDepartmentData);
                 pDepartmentData = save_department_data(department_head);
+            } else {
+                printf("Invalid choice\n");
             }
         } else if (choice[0] == 'L' || choice[0] == 'l') {
             clear_screen();
@@ -152,6 +157,8 @@ int main()
                 show_department_txt(pDepartmentData);
 
                 show_all_node(department_head);
+            } else {
+                printf("Invalid choice\n");
             }
         } else {
             clear_screen();

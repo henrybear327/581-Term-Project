@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "dataType.h"
 
 Department *load_department_data(FILE *pFile)
@@ -109,4 +111,24 @@ void search_node(char dataType, void *input_head, long long int ID)
         printf("This shouldn't happen! %s %d\n", __FILE__, __LINE__);
         exit(0);
     }
+}
+
+void edit_department_data(Department *head, long long int ID)
+{
+    while (head) {
+        if (head->ID == ID) {
+            printf("Changing data of department ID = %lld\n", ID);
+            printf("Name? (Current: %s) ", head->name);
+            fgets(head->name, NAME_SIZE, stdin);
+            head->name[strlen(head->name) - 1] = '\0';
+            printf("Quota? (Current: %d) ", head->quota);
+            scanf("%d", &head->quota);
+            getchar();
+
+            return;
+        }
+        head = head->next;
+    }
+
+    printf("Department ID %lld doesn't exist\n", ID);
 }

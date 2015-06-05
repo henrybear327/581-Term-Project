@@ -12,4 +12,6 @@ void show_all_node(Department *head);
 
 void search_node(char dataType, void *head, long long int);
 
+void edit_department_data(Department *head, long long int);
+
 #endif

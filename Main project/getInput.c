@@ -72,7 +72,7 @@ FILE *save_student_data(Student *head)
 
     while (head) {
         fprintf(pFile,
-                "%15lld %s %2d %2d %2d %2d %2d %lld %lld %lld %lld %lld %lld\n",
+                "%15lld %s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld\n",
                 head->ID, head->name, head->grade.chinese, head->grade.english,
                 head->grade.math, head->grade.social_science, head->grade.science,
                 head->choice[0].department_ID, head->choice[1].department_ID,
