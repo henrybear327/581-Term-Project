@@ -24,6 +24,8 @@ Push a Student node into the queue and update previously last node accordingly
 */
 void push(Student *node, Student *tail);
 
+void edit_student_data(Student *head, long long int ID);
+
 // useless : front -> just check the head pointer
 // Student *front(Student *head);
 

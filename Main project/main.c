@@ -16,6 +16,9 @@
 /*  To-do list
 *   Insert, edit, delete
 *   ranking system
+*
+*   limitation
+*   1. name can only be one word
 */
 
 int main()
@@ -62,14 +65,18 @@ int main()
 
     // query system UI
     bool is_saved = true;
-    
+
     printf("Before processing data, what do you want to do?\n");
     printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
            "all(from file), \n"
            "or press any other key to continue...\n>>");
     char choice[100];
     while (1) {
-        fgets(choice, 100, stdin);
+        while (fgets(choice, 100, stdin) == NULL || choice[0] == '\n') {
+            printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
+                   "all(from file), \n"
+                   "or press any other key to continue...\n>>");
+        }
         if (choice[0] == 'I' || choice[0] == 'i') {
             is_saved = false;
             clear_screen();
@@ -92,14 +99,13 @@ int main()
             printf("ID to modify? ");
             scanf("%lld", &ID);
             getchar();
-            /*
+
             if (c == 's' || c == 'S') {
-                   
+                edit_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
                 // edit
             }
-            */
-            // reload data
+
         } else if (choice[0] == 'S' || choice[0] == 's') {
             clear_screen();
             printf("Search! Search (S)tudent or (D)epartment by ID?\n>>");
@@ -132,29 +138,35 @@ int main()
             char c;
             scanf("%c", &c);
             getchar();
+            printf("First from file then from memory!\n");
             if (c == 's' || c == 'S') {
                 // reopen FLIE stream to get latest data
                 fclose(pStudentData);
                 pStudentData = get_student_txt_fp();
                 show_student_txt(pStudentData);
+
+                show_queue(student_head);
             } else if (c == 'd' || c == 'D') {
                 fclose(pDepartmentData);
                 pDepartmentData = get_department_txt_fp();
                 show_department_txt(pDepartmentData);
+
+                show_all_node(department_head);
             }
         } else {
             clear_screen();
-            if(is_saved == false) {
+            if (is_saved == false) {
                 printf("Automatically saving changes for you...\n");
                 fclose(pStudentData);
                 pStudentData = save_student_data(student_head);
                 fclose(pDepartmentData);
                 pDepartmentData = save_department_data(department_head);
             }
-            
+
             printf("Let's move on......\n");
             break;
         }
+
         printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
                "all, \n"
                "or press any other key to continue...\n>>");
