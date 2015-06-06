@@ -72,7 +72,7 @@ Student *enqueue_all_student_records(FILE *pStudentData)
         }
     }
 
-    return head;
+    return count == 0 ? NULL : head;
 }
 
 void show_queue(Student *head)

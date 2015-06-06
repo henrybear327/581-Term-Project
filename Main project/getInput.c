@@ -3,6 +3,8 @@
 
 #include "dataType.h"
 
+// always consider extreme cases, such as empty file, NULL pointer possibility
+
 FILE *get_student_txt_fp()
 {
     FILE *pFile;

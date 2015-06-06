@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "dataType.h"
 
 Department *load_department_data(FILE *pFile)
 {
     rewind(pFile);
+    bool no_data = false;
 
     Department *head = NULL;
     Department *prev = NULL;
@@ -17,8 +19,10 @@ Department *load_department_data(FILE *pFile)
                 exit(0);
             }
             if (fscanf(pFile, "%lld %s %d", &head->ID, head->name, &head->quota) ==
-                EOF)
+                EOF) {
+                no_data = true;
                 break;
+            }
 
             prev = head;
             head->next = NULL;
@@ -40,7 +44,7 @@ Department *load_department_data(FILE *pFile)
     }
 
     rewind(pFile);
-    return head;
+    return no_data ? NULL : head;
 }
 
 void show_all_node(Department *head)
@@ -175,6 +179,9 @@ Department *insert_department_data(Department *current, long long int ID)
 
                 return head;
             }
+        } else if(ID == current->ID) {
+            printf("ID %lld already exists\n", ID);
+            return head;
         }
 
         prev = current;
