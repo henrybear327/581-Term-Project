@@ -13,13 +13,18 @@
 
 // git log --stat --decorate --pretty=full --graph
 
-/*  To-do list
-*   Delete
-*
+/*
 *   ranking system
 *
 *   limitation
 *   1. name can only be one word(no space because using %s to scan)
+*
+*   Some thoughts
+*   1. Write copious and elaborate details about how and what the function that
+*   I wrote does. This is a time saver and a better way to keep the program
+*bug-free.
+*   2. Always consider extreme cases, such as empty file, NULL pointer
+*possibilities
 */
 
 int main()
@@ -63,6 +68,11 @@ int main()
 #if DEBUG
     show_all_node(department_head);
 #endif
+    /*
+    initial condition
+        all of the student data is in queue
+        all of the department data is in a linked list
+    */
 
     // query system UI
     printf("Before processing data, what do you want to do?\n");
@@ -219,6 +229,21 @@ int main()
                "all, \n"
                "or press any other key to continue...\n> ");
     }
+
+    /*
+    All update-to-date information of students and departments is in the memory
+    and saved to respective text files.
+
+    Now it's time to implement the ranking system!
+    */
+
+    if (student_head == NULL || department_head == NULL) {
+        printf("There isn't sufficient to keep the system running!\n "
+               "Terminating the program\n");
+        exit(0);
+    }
+
+    Student *student_tail = find_queue_tail(student_head);
 
     // program ending, clean up
     if (fclose(pStudentData) == EOF)

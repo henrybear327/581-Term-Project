@@ -283,3 +283,14 @@ Student *delete_student_data(Student *current, long long int ID)
     printf("Student ID %lld not found\n", ID);
     return head;
 }
+
+Student *find_queue_tail(Student *head)
+{
+    Student *prev = NULL;
+    while (head) {
+        prev = head;
+        head = head->next;
+    }
+    
+    return prev;
+}

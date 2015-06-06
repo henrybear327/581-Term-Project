@@ -19,11 +19,6 @@ Remove the first node of the queue
 */
 Student *pop(Student *head);
 
-/*
-Push a Student node into the queue and update previously last node accordingly
-*/
-void push(Student *node, Student *tail);
-
 void edit_student_data(Student *head, long long int ID);
 
 // useless : front -> just check the head pointer
@@ -35,5 +30,16 @@ void edit_student_data(Student *head, long long int ID);
 Student *insert_student_data(Student *current, long long int ID);
 
 Student *delete_student_data(Student *current, long long int ID);
+
+/*
+Push a Student node into the queue and update previously last node accordingly
+*/
+
+/*
+Return the tail's memory address
+*/
+Student *find_queue_tail(Student *head);
+
+void push(Student *node, Student *tail);
 
 #endif

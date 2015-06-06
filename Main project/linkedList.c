@@ -179,7 +179,7 @@ Department *insert_department_data(Department *current, long long int ID)
 
                 return head;
             }
-        } else if(ID == current->ID) {
+        } else if (ID == current->ID) {
             printf("ID %lld already exists\n", ID);
             return head;
         }
