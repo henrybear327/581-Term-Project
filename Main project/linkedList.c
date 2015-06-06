@@ -51,7 +51,7 @@ void show_all_node(Department *head)
 {
     printf("---Showing all node---\n");
     while (head) {
-        printf("%lld %8s %d %d %p %p\n", head->ID, head->name, head->quota,
+        printf("%lld %8s %3d %3d %p %p\n", head->ID, head->name, head->quota,
                head->total_student, head->department_student_head, head->next);
         head = head->next;
     }

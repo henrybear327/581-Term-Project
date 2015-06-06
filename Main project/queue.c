@@ -317,6 +317,8 @@ void add_student_to_department(Department **department_head,
             Student *original_department_student_head =
                 CURRENT_DEPARTMENT->department_student_head;
 #define current (CURRENT_DEPARTMENT->department_student_head)
+// why Student *current= (CURRENT_DEPARTMENT->department_student_head) doesn't
+// work?
 #define RESET_DEPARTMENT_STUDENT_HEAD                                          \
   (current = original_department_student_head)
 

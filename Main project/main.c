@@ -26,6 +26,7 @@
 *bug-free.
 *   2. Always consider extreme cases, such as empty file, NULL pointer
 *possibilities
+*   3. Be good at using pointer!!!
 */
 
 int main()
@@ -261,7 +262,12 @@ int main()
 
             printf("Pop ID %lld out from queue\n", student_head->ID);
             student_head = pop(student_head);
+#ifdef DEBUG
+            printf("\n\n");
             show_queue(student_head);
+            show_all_node(department_head);
+            printf("\n\n");
+#endif
         }
 
         // eliminate the excessive students, put them in queue
