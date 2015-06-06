@@ -16,4 +16,6 @@ void edit_department_data(Department *head, long long int);
 
 Department *insert_department_data(Department *current, long long int ID);
 
+Department *delete_department_data(Department *current, long long int ID);
+
 #endif

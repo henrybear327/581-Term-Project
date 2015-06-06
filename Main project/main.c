@@ -91,15 +91,35 @@ int main()
                 student_head = insert_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
                 department_head = insert_department_data(department_head, ID);
-                printf("Not done!\n");
+            } else {
+                printf("Invalid choice\n");
+            }
+        } else if (choice[0] == 'D' || choice[0] == 'd') {
+            clear_screen();
+            printf("Delete! Delete (S)tudent or (D)epartment? (C)ancel?\n> ");
+
+            char c;
+            long long int ID;
+            scanf("%c", &c);
+            if (c == 'c' || c == 'C') {
+                printf("Operation cancelled\n");
+                continue;
+            }
+
+            if (c == 's' || c == 'S') {
+                printf("ID to delete? ");
+                scanf("%lld", &ID);
+                getchar();
+                student_head = delete_student_data(student_head, ID);
+            } else if (c == 'd' || c == 'D') {
+                printf("ID to delete? ");
+                scanf("%lld", &ID);
+                getchar();
+                department_head = delete_department_data(department_head, ID);
             } else {
                 printf("Invalid choice\n");
             }
 
-        } else if (choice[0] == 'D' || choice[0] == 'd') {
-            clear_screen();
-            printf("Delete! Delete (S)tudent or (D)epartment?\n> ");
-            // reload data
         } else if (choice[0] == 'E' || choice[0] == 'e') {
             clear_screen();
             printf("Edit! Edit (S)tudent or (D)epartment?\n> ");

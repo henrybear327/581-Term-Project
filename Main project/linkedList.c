@@ -199,3 +199,40 @@ Department *insert_department_data(Department *current, long long int ID)
 
     return head;
 }
+
+#define PRINT_DELETE_ID_MESSAGE printf("ID %lld deleted\n", ID);
+Department *delete_department_data(Department *current, long long int ID)
+{
+    Department *head = current, *prev = NULL;
+    while (current) {
+        if (ID == current->ID) {
+            if (prev == NULL) {
+                head = current->next;
+                free(current);
+
+                PRINT_DELETE_ID_MESSAGE;
+                return head;
+            } else {
+                if (current->next == NULL) {
+                    prev->next = NULL;
+                    free(current);
+
+                    PRINT_DELETE_ID_MESSAGE;
+                    return head;
+                } else {
+                    prev->next = current->next;
+                    free(current);
+
+                    PRINT_DELETE_ID_MESSAGE;
+                    return head;
+                }
+            }
+        }
+
+        prev = current;
+        current = current->next;
+    }
+
+    printf("Department ID %lld not found\n", ID);
+    return head;
+}

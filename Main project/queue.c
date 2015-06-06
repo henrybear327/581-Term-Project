@@ -243,3 +243,39 @@ Student *insert_student_data(Student *current, long long int ID)
 
     return head;
 }
+
+Student *delete_student_data(Student *current, long long int ID)
+{
+    Student *head = current, *prev = NULL;
+    while (current) {
+        if (ID == current->ID) {
+            if (prev == NULL) {
+                head = current->next;
+                free(current);
+
+                printf("ID %lld deleted\n", ID);
+                return head;
+            } else {
+                if (current->next == NULL) {
+                    prev->next = NULL;
+                    free(current);
+
+                    printf("ID %lld deleted\n", ID);
+                    return head;
+                } else {
+                    prev->next = current->next;
+                    free(current);
+
+                    printf("ID %lld deleted\n", ID);
+                    return head;
+                }
+            }
+        }
+
+        prev = current;
+        current = current->next;
+    }
+
+    printf("Student ID %lld not found\n", ID);
+    return head;
+}
