@@ -79,7 +79,7 @@ void show_queue(Student *head)
 {
     printf("---showing queue(front)---\n");
     while (head) {
-        printf("%15lld %s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld "
+        printf("%15lld %8s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld "
                "%d\n",
                head->ID, head->name, head->grade.chinese, head->grade.english,
                head->grade.math, head->grade.social_science, head->grade.science,

@@ -90,7 +90,7 @@ int main()
             if (c == 's' || c == 'S') {
                 student_head = insert_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
-                // insert_department_data(department_head, ID);
+                // department_head = insert_department_data(department_head, ID);
                 printf("Not done!\n");
             } else {
                 printf("Invalid choice\n");
@@ -171,6 +171,13 @@ int main()
                 printf("Invalid choice\n");
             }
         } else {
+            printf("Are you sure to move on?[y/n]\n");
+            char c;
+            c = getchar();
+            if (c == 'n' || c == 'N') {
+                continue;
+            }
+
             clear_screen();
             printf("Automatically saving changes for you...\n");
             fclose(pStudentData);
