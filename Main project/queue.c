@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
+
 #include "dataType.h"
 
 /*
@@ -139,6 +139,7 @@ void edit_student_data(Student *head, long long int ID)
 
 Student *insert_student_data(Student *current, long long int ID)
 {
+    printf("current = %p\n", current);
     Student *head = current, *prev = NULL;
     while (current) {
         // printf("current ID %lld\n", current->ID);
@@ -214,7 +215,6 @@ Student *insert_student_data(Student *current, long long int ID)
         prev = current;
         current = current->next;
     }
-    assert(ID >= prev->ID);
 
     Student *new_node = calloc(1, sizeof(Student));
     if (new_node == NULL) {
@@ -239,7 +239,11 @@ Student *insert_student_data(Student *current, long long int ID)
           &new_node->choice[3].department_ID, &new_node->choice[4].department_ID,
           &new_node->choice[5].department_ID);
     getchar(); // dangling \n
-    prev->next = new_node;
+
+    if (prev != NULL)
+        prev->next = new_node;
+    else
+        head = new_node;
 
     return head;
 }

@@ -195,7 +195,10 @@ Department *insert_department_data(Department *current, long long int ID)
     printf("Quota? ");
     scanf("%d", &new_node->quota);
 
-    prev->next = new_node;
+    if (prev != NULL)
+        prev->next = new_node;
+    else
+        head = new_node;
 
     return head;
 }
