@@ -69,7 +69,7 @@ void show_all_node(Department *head)
                    temp->choice[3].department_ID, temp->choice[4].department_ID,
                    temp->choice[5].department_ID, temp->current_result);
             temp = temp->next;
-            //printf("temp %p\n", temp);
+            // printf("temp %p\n", temp);
         }
 
         head = head->next;

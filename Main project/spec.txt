@@ -12,3 +12,31 @@ programming notes
 
     
 no data corruption overlap test
+
+/*
+//why edit will work without ptr to ptr, because they point at the same memory space
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct department { //系所資料
+    // to-do 錄取計算方式
+    long long int ID; // max 5 digits
+};
+
+void change(struct department *node)
+{
+    node->ID = 200;
+}
+
+int main()
+{
+    struct department *new_node = calloc(1, sizeof(struct department));
+    new_node->ID = 100;
+    printf("%lld\n", new_node->ID);
+    change(new_node);
+    printf("%lld\n", new_node->ID);
+
+    return 0;
+}
+*/

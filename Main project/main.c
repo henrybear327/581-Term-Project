@@ -270,10 +270,10 @@ int main()
 #endif
         }
 
-        // eliminate the excessive students, put them in queue
-
-        // Student *student_tail = find_queue_tail(student_head);
+        // eliminate the excessive students, and then put them in queue
+        
     }
+    // Student *student_tail = find_queue_tail(student_head);
 
     // program ending, clean up
     if (fclose(pStudentData) == EOF)
