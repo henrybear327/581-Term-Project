@@ -56,7 +56,7 @@ void show_all_node(Department *head)
 
         Student *temp = head->department_student_head;
         if (temp)
-            printf("Student data of %lld department\n", head->ID);
+            printf("Student data of department %lld\n", head->ID);
 
         while (temp != NULL) {
             printf("%15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld "

@@ -45,8 +45,8 @@ Given the original memory address of department_head and the original address of
 student-node,
 attach the student node to the respective department.
 */
-void add_student_to_department(Department **department_head,
-                               Student **student_node);
+void add_student_to_department(Department *department_head,
+                               Student *student_node);
 
 void push(Student *node, Student *tail);
 

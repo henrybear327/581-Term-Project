@@ -258,7 +258,8 @@ int main()
                 exit(0);
             }
             memcpy(new_node, student_head, sizeof(Student));
-            add_student_to_department(&department_head, &new_node);
+            printf("department_head %p\n", department_head);
+            add_student_to_department(department_head, new_node);
 
             printf("Pop ID %lld out from queue\n", student_head->ID);
             student_head = pop(student_head);
@@ -271,7 +272,6 @@ int main()
         }
 
         // eliminate the excessive students, and then put them in queue
-        
     }
     // Student *student_tail = find_queue_tail(student_head);
 
