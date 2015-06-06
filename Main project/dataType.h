@@ -33,6 +33,7 @@ struct department { //系所資料
     char name[NAME_SIZE];
 
     int quota;
+    int total_student;
     Student *department_student_head;
 
     Department *next;

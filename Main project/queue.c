@@ -291,6 +291,98 @@ Student *find_queue_tail(Student *head)
         prev = head;
         head = head->next;
     }
-    
+
     return prev;
+}
+
+void add_student_to_department(Department **department_head,
+                               Student **student_node)
+{
+    Department *original_department_head = *department_head;
+    printf("original_department_head %p\n", original_department_head);
+#define RESET_DEPARTMENT_HEAD (*department_head = original_department_head)
+#define CURRENT_DEPARTMENT (*department_head)
+#define student_node (*student_node)
+    // possible NULL?
+    while (CURRENT_DEPARTMENT) { // loop through department nodes to find ID
+        if (CURRENT_DEPARTMENT->ID ==
+            student_node->choice[student_node->current_result]
+            .department_ID) { // ID matched
+            printf("Department ID %lld matched(%lld)\n", CURRENT_DEPARTMENT->ID,
+                   student_node->choice[student_node->current_result].department_ID);
+            (CURRENT_DEPARTMENT->total_student)++;
+
+            // insert the student node under this department
+
+            Student *original_department_student_head =
+                CURRENT_DEPARTMENT->department_student_head;
+#define current (CURRENT_DEPARTMENT->department_student_head)
+#define RESET_DEPARTMENT_STUDENT_HEAD                                          \
+  (current = original_department_student_head)
+
+            if (current == NULL) {
+                // no student yet
+                printf(
+                    "Add first student node %lld to department\n",
+                    student_node->choice[student_node->current_result].department_ID);
+                current = student_node;
+                student_node->next = NULL;
+
+                RESET_DEPARTMENT_HEAD;
+                printf("reset %p\n", *department_head);
+                return;
+            }
+
+            Student *prev = NULL;
+            while (current) {
+                if (student_node->grade.total > current->grade.total) {
+                    if (prev == NULL) { // before first node
+                        printf("Add student node %lld before head to department\n",
+                               student_node->choice[student_node->current_result]
+                               .department_ID);
+                        student_node->next = current;
+                        current = student_node;
+
+                        RESET_DEPARTMENT_HEAD;
+                        printf("reset %p\n", *department_head);
+                        return;
+                    } else {
+                        // after first node and before last node
+                        printf("Add student node %lld b/w head and tail to department\n",
+                               student_node->choice[student_node->current_result]
+                               .department_ID);
+                        prev->next = student_node;
+                        student_node->next = current;
+
+                        RESET_DEPARTMENT_STUDENT_HEAD;
+                        RESET_DEPARTMENT_HEAD;
+                        printf("reset %p\n", *department_head);
+                        return;
+                    }
+                }
+
+                prev = current;
+                current = current->next;
+            }
+            // after last node
+            printf("Add student node %lld in the end to department\n",
+                   student_node->choice[student_node->current_result].department_ID);
+            prev->next = student_node;
+            student_node->next = NULL;
+
+            RESET_DEPARTMENT_STUDENT_HEAD;
+            RESET_DEPARTMENT_HEAD;
+            printf("reset %p\n", *department_head);
+            return;
+        }
+
+        CURRENT_DEPARTMENT = CURRENT_DEPARTMENT->next;
+    }
+
+    printf("No such department found!(Requested department ID %lld)\n",
+           student_node->choice[student_node->current_result].department_ID);
+
+    RESET_DEPARTMENT_HEAD;
+    printf("reset %p\n", *department_head);
+    return;
 }

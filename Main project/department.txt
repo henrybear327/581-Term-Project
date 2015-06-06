@@ -1,0 +1,5 @@
+ 1000 omit 10
+ 1001 omit  9
+ 1002 omit 10
+ 1003 omit  5
+ 1004 omit  8

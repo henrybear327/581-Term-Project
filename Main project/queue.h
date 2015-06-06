@@ -40,6 +40,8 @@ Return the tail's memory address
 */
 Student *find_queue_tail(Student *head);
 
+void add_student_to_department(Department **head, Student **node);
+
 void push(Student *node, Student *tail);
 
 #endif

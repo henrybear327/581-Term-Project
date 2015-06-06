@@ -15,6 +15,7 @@
 
 /*
 *   ranking system
+*   data verification (replication, non-existence department, etc.)
 *
 *   limitation
 *   1. name can only be one word(no space because using %s to scan)
@@ -238,12 +239,35 @@ int main()
     */
 
     if (student_head == NULL || department_head == NULL) {
-        printf("There isn't sufficient to keep the system running!\n "
+        printf("There isn't sufficient to keep the system running!\n"
                "Terminating the program\n");
         exit(0);
     }
 
-    Student *student_tail = find_queue_tail(student_head);
+    // need to set terminating condition
+
+    while (student_head) { // when the queue is empty, the work is done!
+        // put all students from queue to the corresponding department
+        while (student_head) {
+            // copy the front student node, and then attach to the corresponding
+            // department
+            Student *new_node = calloc(1, sizeof(Student));
+            if (new_node == NULL) {
+                CALLOC_ERROR;
+                exit(0);
+            }
+            memcpy(new_node, student_head, sizeof(Student));
+            add_student_to_department(&department_head, &new_node);
+
+            printf("Pop ID %lld out from queue\n", student_head->ID);
+            student_head = pop(student_head);
+            show_queue(student_head);
+        }
+
+        // eliminate the excessive students, put them in queue
+
+        // Student *student_tail = find_queue_tail(student_head);
+    }
 
     // program ending, clean up
     if (fclose(pStudentData) == EOF)
