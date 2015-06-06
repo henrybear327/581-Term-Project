@@ -65,8 +65,6 @@ int main()
 #endif
 
     // query system UI
-    bool is_saved = true;
-
     printf("Before processing data, what do you want to do?\n");
     printf("\n(I)nsert, (D)elete, (E)dit, (S)earch, (W)rite to file, (L)ist "
            "all(from file), \n"
@@ -79,18 +77,30 @@ int main()
                    "or press any other key to continue...\n> ");
         }
         if (choice[0] == 'I' || choice[0] == 'i') {
-            is_saved = false;
             clear_screen();
             printf("Insert! Insert (S)tudent or (D)epartment?\n> ");
 
-            // reload data data
+            char c;
+            long long int ID;
+            scanf("%c", &c);
+            printf("ID to insert? ");
+            scanf("%lld", &ID);
+            getchar();
+
+            if (c == 's' || c == 'S') {
+                student_head = insert_student_data(student_head, ID);
+            } else if (c == 'd' || c == 'D') {
+                // insert_department_data(department_head, ID);
+                printf("Not done!\n");
+            } else {
+                printf("Invalid choice\n");
+            }
+
         } else if (choice[0] == 'D' || choice[0] == 'd') {
-            is_saved = false;
             clear_screen();
             printf("Delete! Delete (S)tudent or (D)epartment?\n> ");
             // reload data
         } else if (choice[0] == 'E' || choice[0] == 'e') {
-            is_saved = false;
             clear_screen();
             printf("Edit! Edit (S)tudent or (D)epartment?\n> ");
 
@@ -122,7 +132,6 @@ int main()
             else
                 printf("Invalid choice\n");
         } else if (choice[0] == 'W' || choice[0] == 'w') {
-            is_saved = true;
             clear_screen();
             printf("Save file! Save (S)tudent or (D)epartment data to file?\n> ");
             char c;
@@ -163,13 +172,11 @@ int main()
             }
         } else {
             clear_screen();
-            if (is_saved == false) {
-                printf("Automatically saving changes for you...\n");
-                fclose(pStudentData);
-                pStudentData = save_student_data(student_head);
-                fclose(pDepartmentData);
-                pDepartmentData = save_department_data(department_head);
-            }
+            printf("Automatically saving changes for you...\n");
+            fclose(pStudentData);
+            pStudentData = save_student_data(student_head);
+            fclose(pDepartmentData);
+            pDepartmentData = save_department_data(department_head);
 
             printf("Let's move on......\n");
             break;

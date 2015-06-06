@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <assert.h>
 #include "dataType.h"
 
 /*
@@ -135,4 +135,111 @@ void edit_student_data(Student *head, long long int ID)
     }
 
     printf("Student ID %lld doesn't exit!\n", ID);
+}
+
+Student *insert_student_data(Student *current, long long int ID)
+{
+    Student *head = current, *prev = NULL;
+    while (current) {
+        // printf("current ID %lld\n", current->ID);
+        if (ID < current->ID) { // insert before it
+            if (prev == NULL) {
+                Student *new_node = calloc(1, sizeof(Student));
+                if (new_node == NULL) {
+                    CALLOC_ERROR;
+                    exit(0);
+                }
+
+                printf("Insert before head\n");
+                new_node->ID = ID;
+                printf("New name? ");
+                fgets(new_node->name, NAME_SIZE, stdin);
+                // get rid of \n
+                new_node->name[strlen(new_node->name) - 1] = '\0';
+                printf("Grade? Enter using the order of Chinese, English, Math, "
+                       "Social Science, Science: ");
+                scanf("%d %d %d %d %d", &new_node->grade.chinese,
+                      &new_node->grade.english, &new_node->grade.math,
+                      &new_node->grade.social_science, &new_node->grade.science);
+                printf("Priority of choice? ");
+                scanf("%lld %lld %lld %lld %lld %lld",
+                      &new_node->choice[0].department_ID,
+                      &new_node->choice[1].department_ID,
+                      &new_node->choice[2].department_ID,
+                      &new_node->choice[3].department_ID,
+                      &new_node->choice[4].department_ID,
+                      &new_node->choice[5].department_ID);
+                getchar(); // dangling \n
+
+                new_node->next = current;
+                return new_node;
+            } else {
+                Student *new_node = calloc(1, sizeof(Student));
+                if (new_node == NULL) {
+                    CALLOC_ERROR;
+                    exit(0);
+                }
+
+                printf("Insert before current node\n");
+                new_node->ID = ID;
+                printf("New name? ");
+                fgets(new_node->name, NAME_SIZE, stdin);
+                // get rid of \n
+                new_node->name[strlen(new_node->name) - 1] = '\0';
+                printf("Grade? Enter using the order of Chinese, English, Math, "
+                       "Social Science, Science: ");
+                scanf("%d %d %d %d %d", &new_node->grade.chinese,
+                      &new_node->grade.english, &new_node->grade.math,
+                      &new_node->grade.social_science, &new_node->grade.science);
+                printf("Priority of choice? ");
+                scanf("%lld %lld %lld %lld %lld %lld",
+                      &new_node->choice[0].department_ID,
+                      &new_node->choice[1].department_ID,
+                      &new_node->choice[2].department_ID,
+                      &new_node->choice[3].department_ID,
+                      &new_node->choice[4].department_ID,
+                      &new_node->choice[5].department_ID);
+                getchar(); // dangling \n
+
+                prev->next = new_node;
+                new_node->next = current;
+
+                return head;
+            }
+        } else if (ID == current->ID) {
+            printf("Student ID %lld already exists.\n", ID);
+            return head;
+        }
+
+        prev = current;
+        current = current->next;
+    }
+    assert(ID >= prev->ID);
+
+    Student *new_node = calloc(1, sizeof(Student));
+    if (new_node == NULL) {
+        CALLOC_ERROR;
+        exit(0);
+    }
+
+    printf("Insert after tail\n");
+    new_node->ID = ID;
+    printf("New name? ");
+    fgets(new_node->name, NAME_SIZE, stdin);
+    // get rid of \n
+    new_node->name[strlen(new_node->name) - 1] = '\0';
+    printf("Grade? Enter using the order of Chinese, English, Math, "
+           "Social Science, Science: ");
+    scanf("%d %d %d %d %d", &new_node->grade.chinese, &new_node->grade.english,
+          &new_node->grade.math, &new_node->grade.social_science,
+          &new_node->grade.science);
+    printf("Priority of choice? ");
+    scanf("%lld %lld %lld %lld %lld %lld", &new_node->choice[0].department_ID,
+          &new_node->choice[1].department_ID, &new_node->choice[2].department_ID,
+          &new_node->choice[3].department_ID, &new_node->choice[4].department_ID,
+          &new_node->choice[5].department_ID);
+    getchar(); // dangling \n
+    prev->next = new_node;
+
+    return head;
 }

@@ -32,4 +32,6 @@ void edit_student_data(Student *head, long long int ID);
 // useless : just check if head is NULL
 // bool *is_empty(Student *head);
 
+Student *insert_student_data(Student *head, long long int ID);
+
 #endif
