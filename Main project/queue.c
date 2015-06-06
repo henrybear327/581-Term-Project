@@ -405,7 +405,7 @@ void add_student_to_department(Department **department_head,
 
     printf("No such department found!(Requested department ID %lld)\n",
            student_node->choice[student_node->current_result].department_ID);
-    
+
     (student_node->current_result)++;
     RESET_DEPARTMENT_HEAD;
     printf("reset %p\n", *department_head);

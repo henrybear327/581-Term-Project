@@ -53,6 +53,25 @@ void show_all_node(Department *head)
     while (head) {
         printf("%lld %8s %3d %3d %p %p\n", head->ID, head->name, head->quota,
                head->total_student, head->department_student_head, head->next);
+
+        Student *temp = head->department_student_head;
+        if (temp)
+            printf("Student data of %lld department\n", head->ID);
+
+        while (temp != NULL) {
+            printf("%15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld "
+                   "%5lld "
+                   "%d\n",
+                   temp->ID, temp->name, temp->grade.chinese, temp->grade.english,
+                   temp->grade.math, temp->grade.social_science, temp->grade.science,
+                   temp->grade.total, temp->choice[0].department_ID,
+                   temp->choice[1].department_ID, temp->choice[2].department_ID,
+                   temp->choice[3].department_ID, temp->choice[4].department_ID,
+                   temp->choice[5].department_ID, temp->current_result);
+            temp = temp->next;
+            //printf("temp %p\n", temp);
+        }
+
         head = head->next;
     }
     printf("---That's all in the linked list---\n");
