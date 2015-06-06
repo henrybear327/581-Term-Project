@@ -83,13 +83,16 @@ int main()
             char c;
             long long int ID;
             scanf("%c", &c);
-            printf("ID to insert? ");
-            scanf("%lld", &ID);
-            getchar();
 
             if (c == 's' || c == 'S') {
+                printf("ID to insert? ");
+                scanf("%lld", &ID);
+                getchar();
                 student_head = insert_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
+                printf("ID to insert? ");
+                scanf("%lld", &ID);
+                getchar();
                 department_head = insert_department_data(department_head, ID);
             } else {
                 printf("Invalid choice\n");
@@ -127,13 +130,16 @@ int main()
             char c;
             long long int ID;
             scanf("%c", &c);
-            printf("ID to modify? ");
-            scanf("%lld", &ID);
-            getchar();
 
             if (c == 's' || c == 'S') {
+                printf("ID to modify? ");
+                scanf("%lld", &ID);
+                getchar();
                 edit_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
+                printf("ID to modify? ");
+                scanf("%lld", &ID);
+                getchar();
                 edit_department_data(department_head, ID);
             } else {
                 printf("Invalid choice\n");
