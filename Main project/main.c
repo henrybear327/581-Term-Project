@@ -14,7 +14,7 @@
 // git log --stat --decorate --pretty=full --graph
 
 /*  To-do list
-*   Insert, delete
+*   Delete
 *
 *   ranking system
 *
@@ -90,7 +90,7 @@ int main()
             if (c == 's' || c == 'S') {
                 student_head = insert_student_data(student_head, ID);
             } else if (c == 'd' || c == 'D') {
-                // department_head = insert_department_data(department_head, ID);
+                department_head = insert_department_data(department_head, ID);
                 printf("Not done!\n");
             } else {
                 printf("Invalid choice\n");

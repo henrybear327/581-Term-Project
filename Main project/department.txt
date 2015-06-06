@@ -1,4 +1,4 @@
-    0 omit 10
+    0 test 100
     1 omit  9
     2 omit 10
     3 omit  5
@@ -7,4 +7,4 @@
     6 omit  1
     7 omit  6
     8 omit  1
-    9 omit  4
+    9 test 10

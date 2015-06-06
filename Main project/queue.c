@@ -180,7 +180,7 @@ Student *insert_student_data(Student *current, long long int ID)
                     exit(0);
                 }
 
-                printf("Insert before current node\n");
+                printf("Insert before current node %lld\n", ID);
                 new_node->ID = ID;
                 printf("New name? ");
                 fgets(new_node->name, NAME_SIZE, stdin);

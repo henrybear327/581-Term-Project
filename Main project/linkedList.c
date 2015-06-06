@@ -132,3 +132,70 @@ void edit_department_data(Department *head, long long int ID)
 
     printf("Department ID %lld doesn't exist\n", ID);
 }
+
+Department *insert_department_data(Department *current, long long int ID)
+{
+    Department *head = current, *prev = NULL;
+    while (current) {
+        if (ID < current->ID) {
+            if (prev == NULL) {
+                Department *new_node;
+                if ((new_node = calloc(1, sizeof(Department))) == NULL) {
+                    CALLOC_ERROR;
+                    exit(0);
+                }
+
+                printf("Insert before head\n");
+                new_node->ID = ID;
+                printf("Name? ");
+                fgets(new_node->name, NAME_SIZE, stdin);
+                new_node->name[strlen(new_node->name) - 1] = '\0';
+                printf("Quota? ");
+                scanf("%d", &new_node->quota);
+
+                new_node->next = current;
+                return new_node;
+            } else {
+                Department *new_node;
+                if ((new_node = calloc(1, sizeof(Department))) == NULL) {
+                    CALLOC_ERROR;
+                    exit(0);
+                }
+
+                printf("Insert before current node %lld\n", ID);
+                new_node->ID = ID;
+                printf("Name? ");
+                fgets(new_node->name, NAME_SIZE, stdin);
+                new_node->name[strlen(new_node->name) - 1] = '\0';
+                printf("Quota? ");
+                scanf("%d", &new_node->quota);
+
+                prev->next = new_node;
+                new_node->next = current;
+
+                return head;
+            }
+        }
+
+        prev = current;
+        current = current->next;
+    }
+
+    Department *new_node;
+    if ((new_node = calloc(1, sizeof(Department))) == NULL) {
+        CALLOC_ERROR;
+        exit(0);
+    }
+
+    printf("Insert after tail\n");
+    new_node->ID = ID;
+    printf("Name? ");
+    fgets(new_node->name, NAME_SIZE, stdin);
+    new_node->name[strlen(new_node->name) - 1] = '\0';
+    printf("Quota? ");
+    scanf("%d", &new_node->quota);
+
+    prev->next = new_node;
+
+    return head;
+}
