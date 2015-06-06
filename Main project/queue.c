@@ -36,6 +36,9 @@ Student *enqueue_all_student_records(FILE *pStudentData)
                        &head->choice[2].department_ID, &head->choice[3].department_ID,
                        &head->choice[4].department_ID,
                        &head->choice[5].department_ID) != EOF) {
+                head->grade.total = head->grade.chinese + head->grade.english +
+                                    head->grade.math + head->grade.social_science +
+                                    head->grade.science;
                 count++;
                 head->next = NULL;
                 prev = head;
@@ -61,6 +64,10 @@ Student *enqueue_all_student_records(FILE *pStudentData)
                        &new_node->choice[3].department_ID,
                        &new_node->choice[4].department_ID,
                        &new_node->choice[5].department_ID) != EOF) {
+                new_node->grade.total = new_node->grade.chinese +
+                                        new_node->grade.english + new_node->grade.math +
+                                        new_node->grade.social_science +
+                                        new_node->grade.science;
                 count++;
                 new_node->next = NULL;
                 prev->next = new_node;
@@ -79,14 +86,15 @@ void show_queue(Student *head)
 {
     printf("---showing queue(front)---\n");
     while (head) {
-        printf("%15lld %8s %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld %5lld "
+        printf("%15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld %5lld "
+               "%5lld "
                "%d\n",
                head->ID, head->name, head->grade.chinese, head->grade.english,
                head->grade.math, head->grade.social_science, head->grade.science,
-               head->choice[0].department_ID, head->choice[1].department_ID,
-               head->choice[2].department_ID, head->choice[3].department_ID,
-               head->choice[4].department_ID, head->choice[5].department_ID,
-               head->current_result);
+               head->grade.total, head->choice[0].department_ID,
+               head->choice[1].department_ID, head->choice[2].department_ID,
+               head->choice[3].department_ID, head->choice[4].department_ID,
+               head->choice[5].department_ID, head->current_result);
         head = head->next;
     }
     printf("---That's all in the queue(back)---\n");
@@ -118,6 +126,9 @@ void edit_student_data(Student *head, long long int ID)
             scanf("%d %d %d %d %d", &head->grade.chinese, &head->grade.english,
                   &head->grade.math, &head->grade.social_science,
                   &head->grade.science);
+            head->grade.total = head->grade.chinese + head->grade.english +
+                                head->grade.math + head->grade.social_science +
+                                head->grade.science;
             printf("New priority of choice?\n (Current: %5lld %5lld %5lld %5lld "
                    "%5lld %5lld)",
                    head->choice[0].department_ID, head->choice[1].department_ID,
@@ -162,6 +173,10 @@ Student *insert_student_data(Student *current, long long int ID)
                 scanf("%d %d %d %d %d", &new_node->grade.chinese,
                       &new_node->grade.english, &new_node->grade.math,
                       &new_node->grade.social_science, &new_node->grade.science);
+                new_node->grade.total = new_node->grade.chinese +
+                                        new_node->grade.english + new_node->grade.math +
+                                        new_node->grade.social_science +
+                                        new_node->grade.science;
                 printf("Priority of choice? ");
                 scanf("%lld %lld %lld %lld %lld %lld",
                       &new_node->choice[0].department_ID,
@@ -181,7 +196,7 @@ Student *insert_student_data(Student *current, long long int ID)
                     exit(0);
                 }
 
-                printf("Insert before current node %lld\n", ID);
+                printf("Insert before current node %lld\n", current->ID);
                 new_node->ID = ID;
                 printf("New name? ");
                 fgets(new_node->name, NAME_SIZE, stdin);
@@ -192,6 +207,10 @@ Student *insert_student_data(Student *current, long long int ID)
                 scanf("%d %d %d %d %d", &new_node->grade.chinese,
                       &new_node->grade.english, &new_node->grade.math,
                       &new_node->grade.social_science, &new_node->grade.science);
+                new_node->grade.total = new_node->grade.chinese +
+                                        new_node->grade.english + new_node->grade.math +
+                                        new_node->grade.social_science +
+                                        new_node->grade.science;
                 printf("Priority of choice? ");
                 scanf("%lld %lld %lld %lld %lld %lld",
                       &new_node->choice[0].department_ID,
@@ -233,6 +252,9 @@ Student *insert_student_data(Student *current, long long int ID)
     scanf("%d %d %d %d %d", &new_node->grade.chinese, &new_node->grade.english,
           &new_node->grade.math, &new_node->grade.social_science,
           &new_node->grade.science);
+    new_node->grade.total =
+        new_node->grade.chinese + new_node->grade.english + new_node->grade.math +
+        new_node->grade.social_science + new_node->grade.science;
     printf("Priority of choice? ");
     scanf("%lld %lld %lld %lld %lld %lld", &new_node->choice[0].department_ID,
           &new_node->choice[1].department_ID, &new_node->choice[2].department_ID,
@@ -383,7 +405,8 @@ void add_student_to_department(Department **department_head,
 
     printf("No such department found!(Requested department ID %lld)\n",
            student_node->choice[student_node->current_result].department_ID);
-
+    
+    (student_node->current_result)++;
     RESET_DEPARTMENT_HEAD;
     printf("reset %p\n", *department_head);
     return;
