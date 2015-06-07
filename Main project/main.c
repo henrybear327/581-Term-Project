@@ -9,8 +9,6 @@
 #include "dataType.h"
 #include "utility.h"
 
-#define DEBUG 1
-
 // git log --stat --decorate --pretty=full --graph
 
 /*
@@ -246,7 +244,7 @@ int main()
     }
 
     // need to set terminating condition
-
+    clear_screen();
     while (student_head) { // when the queue is empty, the work is done!
         // put all students from queue to the corresponding department
         while (student_head) {
@@ -258,20 +256,25 @@ int main()
                 exit(0);
             }
             memcpy(new_node, student_head, sizeof(Student));
+#if DEBUG
             printf("department_head %p\n", department_head);
+#endif
             add_student_to_department(department_head, new_node);
-
+#if DEBUG
             printf("Pop ID %lld out from queue\n", student_head->ID);
+#endif
             student_head = pop(student_head);
-#ifdef DEBUG
+#if DEBUG
             printf("\n\n");
             show_queue(student_head);
             show_all_node(department_head);
             printf("\n\n");
 #endif
         }
+        printf("Done!\n");
 
         // eliminate the excessive students, and then put them in queue
+        // check if the current_result runs over 5
     }
     // Student *student_tail = find_queue_tail(student_head);
 

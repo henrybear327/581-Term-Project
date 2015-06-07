@@ -5,6 +5,8 @@
 #define WAITING_LIST 2
 #define REJECT 3
 
+#define DEBUG 0
+
 #define NAME_SIZE 100
 
 typedef struct result Result;

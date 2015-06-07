@@ -51,7 +51,7 @@ void show_all_node(Department *head)
 {
     printf("---Showing all node---\n");
     while (head) {
-        printf("%lld %8s %3d %3d %p %p\n", head->ID, head->name, head->quota,
+        printf("%5lld %8s %3d %3d %p %p\n", head->ID, head->name, head->quota,
                head->total_student, head->department_student_head, head->next);
 
         Student *temp = head->department_student_head;
@@ -168,7 +168,9 @@ Department *insert_department_data(Department *current, long long int ID)
                     exit(0);
                 }
 
+#if DEBUG
                 printf("Insert before head\n");
+#endif
                 new_node->ID = ID;
                 printf("Name? ");
                 fgets(new_node->name, NAME_SIZE, stdin);
@@ -185,7 +187,9 @@ Department *insert_department_data(Department *current, long long int ID)
                     exit(0);
                 }
 
+#if DEBUG
                 printf("Insert before current node %lld\n", ID);
+#endif
                 new_node->ID = ID;
                 printf("Name? ");
                 fgets(new_node->name, NAME_SIZE, stdin);
@@ -213,7 +217,9 @@ Department *insert_department_data(Department *current, long long int ID)
         exit(0);
     }
 
+#if DEBUG
     printf("Insert after tail\n");
+#endif
     new_node->ID = ID;
     printf("Name? ");
     fgets(new_node->name, NAME_SIZE, stdin);
