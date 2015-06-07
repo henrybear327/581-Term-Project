@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "dataType.h"
+#include "queue.h"
 
 /*
 No bitch-proof! Invalid input file may crash the program
@@ -324,7 +325,7 @@ Student *find_queue_tail(Student *head)
 }
 
 void add_student_to_department(Department *department_head,
-                               Student *student_node)
+                               Student *student_node, Student **queue_head)
 {
 #if DEBUG
     printf("department_head %p\n", department_head);
@@ -433,7 +434,30 @@ void add_student_to_department(Department *department_head,
            student_node->ID,
            student_node->choice[student_node->current_result].department_ID);
 
-    (student_node->current_result)++;
+    //(student_node->current_result)++;
+    // directly enqueue student
+    push_to_queue(queue_head, student_node);
     department_head = original_department_head;
     return;
+}
+
+void push_to_queue(Student **queue_head, Student *to_enqueue)
+{
+    Student *prev = NULL, *current_queue_pos = *queue_head;
+    while (current_queue_pos) {
+        prev = current_queue_pos;
+        current_queue_pos = current_queue_pos->next;
+    }
+
+    // don't forget the NULL case
+    // if prev is NULL, prev-next will simply crash the program
+    if (prev)
+        prev->next = to_enqueue;
+    else
+        *queue_head = to_enqueue;
+
+    while (to_enqueue) {
+        (to_enqueue->current_result)++;
+        to_enqueue = to_enqueue->next;
+    }
 }

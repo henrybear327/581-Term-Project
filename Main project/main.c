@@ -245,7 +245,9 @@ int main()
 
     // need to set terminating condition
     clear_screen();
+    int total_round = 0;
     while (student_head) { // when the queue is empty, the work is done!
+        printf("start round %d\n", total_round++);
         // put all students from queue to the corresponding department
         while (student_head) {
             // copy the front student node, and then attach to the corresponding
@@ -258,8 +260,12 @@ int main()
             memcpy(new_node, student_head, sizeof(Student));
 #if DEBUG
             printf("department_head %p\n", department_head);
+            printf("Before processing\n\n");
+            show_queue(student_head);
+            show_all_node(department_head);
+            printf("\n\n");
 #endif
-            add_student_to_department(department_head, new_node);
+            add_student_to_department(department_head, new_node, &student_head);
 #if DEBUG
             printf("Pop ID %lld out from queue\n", student_head->ID);
 #endif
@@ -275,6 +281,11 @@ int main()
 
         // eliminate the excessive students, and then put them in queue
         // check if the current_result runs over 5
+        // if the department requested doesn't exist, current_result++
+        printf("student_head %p(should be nil)\n", student_head);
+        eliminate_student_from_department(department_head, &student_head);
+        printf("student_head %p\n", student_head);
+        printf("End round %d\n", total_round++);
     }
     // Student *student_tail = find_queue_tail(student_head);
 

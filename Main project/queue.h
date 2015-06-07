@@ -46,8 +46,8 @@ student-node,
 attach the student node to the respective department.
 */
 void add_student_to_department(Department *department_head,
-                               Student *student_node);
+                               Student *student_node, Student **queue_head);
 
-void push(Student *node, Student *tail);
+void push_to_queue(Student **queue_head, Student *to_enqueue);
 
 #endif

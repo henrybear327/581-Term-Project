@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include "dataType.h"
+#include "queue.h"
 
 Department *load_department_data(FILE *pFile)
 {
@@ -270,4 +271,55 @@ Department *delete_department_data(Department *current, long long int ID)
 
     printf("Department ID %lld not found\n", ID);
     return head;
+}
+
+void eliminate_student_from_department(Department *current_department,
+                                       Student **queue_head)
+{
+    while (current_department) {
+        if (current_department->quota < current_department->total_student) {
+            // need to eliminate
+            /*
+            two situations
+            1. only one qualify for the last slot
+            2. more than one qualify for the last slot
+            */
+
+            Student *prev = NULL,
+                     *current_student = current_department->department_student_head;
+            int count = 0, worst_total_grade = current_student->grade.total;
+
+            while (current_student) {
+                count++;
+                if (count > current_department->quota) {
+                    if (worst_total_grade > current_student->grade.total) {
+                        // update department total_student,show last qualified student grade
+                        // data
+                        current_department->total_student = count - 1;
+                        printf("Last qualified student grade data of department %lld\n",
+                               current_department->ID);
+                        printf("%15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld "
+                               "%5lld "
+                               "%5lld "
+                               "%d\n",
+                               prev->ID, prev->name, prev->grade.chinese,
+                               prev->grade.english, prev->grade.math,
+                               prev->grade.social_science, prev->grade.science,
+                               prev->grade.total, prev->choice[0].department_ID,
+                               prev->choice[1].department_ID, prev->choice[2].department_ID,
+                               prev->choice[3].department_ID, prev->choice[4].department_ID,
+                               prev->choice[5].department_ID, prev->current_result);
+                        // enqueue the following nodes
+                        prev->next = NULL;
+                        push_to_queue(queue_head, current_student);
+                    }
+                }
+
+                prev = current_student;
+                current_student = current_student->next;
+            }
+        }
+
+        current_department = current_department->next;
+    }
 }
