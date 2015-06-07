@@ -321,6 +321,7 @@ void eliminate_student_from_department(Department *current_department,
                         // enqueue the following nodes
                         prev->next = NULL;
                         push_to_queue(queue_head, current_student);
+                        break;
                     }
                 }
 

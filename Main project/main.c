@@ -286,6 +286,7 @@ int main()
         eliminate_student_from_department(department_head, &student_head);
         printf("student_head %p\n", student_head);
         printf("End round %d\n", total_round++);
+        getchar();
     }
 
     show_final_result(department_head);

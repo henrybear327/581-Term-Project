@@ -450,6 +450,7 @@ void push_to_queue(Student **queue_head, Student *to_enqueue)
     }
 
     while (to_enqueue && to_enqueue->current_result >= 6) {
+        printf("1\n");
         // don't need to enqueue this kind of student
         printf("No department! %15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld "
                "%5lld %5lld "
@@ -491,12 +492,12 @@ void push_to_queue(Student **queue_head, Student *to_enqueue)
                    to_enqueue->choice[5].department_ID, to_enqueue->current_result);
 
             if (prev == NULL) {
-                to_enqueue = NULL;
+                to_enqueue = to_enqueue->next;
                 continue;
             }
 
-            prev->next = to_enqueue->next;
-            to_enqueue = prev->next;
+            // prev->next = to_enqueue->next;
+            to_enqueue = to_enqueue->next;
             continue;
         }
         prev = to_enqueue;

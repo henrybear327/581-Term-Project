@@ -1,0 +1,5 @@
+    0 omit  1
+    1 omit  0
+    2 omit  0
+    3 omit  0
+    4 omit  0
