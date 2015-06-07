@@ -247,7 +247,7 @@ int main()
     clear_screen();
     int total_round = 0;
     while (student_head) { // when the queue is empty, the work is done!
-        printf("start round %d\n", total_round++);
+        printf("start round %d\n", total_round);
         // put all students from queue to the corresponding department
         while (student_head) {
             // copy the front student node, and then attach to the corresponding
@@ -287,6 +287,9 @@ int main()
         printf("student_head %p\n", student_head);
         printf("End round %d\n", total_round++);
     }
+
+    show_final_result(department_head);
+
     // Student *student_tail = find_queue_tail(student_head);
 
     // program ending, clean up

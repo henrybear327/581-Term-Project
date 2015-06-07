@@ -449,15 +449,57 @@ void push_to_queue(Student **queue_head, Student *to_enqueue)
         current_queue_pos = current_queue_pos->next;
     }
 
+    while (to_enqueue && to_enqueue->current_result >= 6) {
+        // don't need to enqueue this kind of student
+        printf("No department! %15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld "
+               "%5lld %5lld "
+               "%5lld %5lld %d\n",
+               to_enqueue->ID, to_enqueue->name, to_enqueue->grade.chinese,
+               to_enqueue->grade.english, to_enqueue->grade.math,
+               to_enqueue->grade.social_science, to_enqueue->grade.science,
+               to_enqueue->grade.total, to_enqueue->choice[0].department_ID,
+               to_enqueue->choice[1].department_ID,
+               to_enqueue->choice[2].department_ID,
+               to_enqueue->choice[3].department_ID,
+               to_enqueue->choice[4].department_ID,
+               to_enqueue->choice[5].department_ID, to_enqueue->current_result);
+        to_enqueue = to_enqueue->next;
+    }
+
     // don't forget the NULL case
     // if prev is NULL, prev-next will simply crash the program
-    if (prev)
+    if (prev) {
         prev->next = to_enqueue;
-    else
+    } else {
         *queue_head = to_enqueue;
+    }
 
     while (to_enqueue) {
         (to_enqueue->current_result)++;
+        if (to_enqueue->current_result == 6) {
+            printf("No department! %15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld "
+                   "%5lld %5lld "
+                   "%5lld %5lld %d\n",
+                   to_enqueue->ID, to_enqueue->name, to_enqueue->grade.chinese,
+                   to_enqueue->grade.english, to_enqueue->grade.math,
+                   to_enqueue->grade.social_science, to_enqueue->grade.science,
+                   to_enqueue->grade.total, to_enqueue->choice[0].department_ID,
+                   to_enqueue->choice[1].department_ID,
+                   to_enqueue->choice[2].department_ID,
+                   to_enqueue->choice[3].department_ID,
+                   to_enqueue->choice[4].department_ID,
+                   to_enqueue->choice[5].department_ID, to_enqueue->current_result);
+
+            if (prev == NULL) {
+                to_enqueue = NULL;
+                continue;
+            }
+
+            prev->next = to_enqueue->next;
+            to_enqueue = prev->next;
+            continue;
+        }
+        prev = to_enqueue;
         to_enqueue = to_enqueue->next;
     }
 }

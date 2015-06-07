@@ -21,4 +21,6 @@ Department *delete_department_data(Department *current, long long int ID);
 void eliminate_student_from_department(Department *current_department,
                                        Student **queue_head);
 
+void show_final_result(Department *head);
+
 #endif
