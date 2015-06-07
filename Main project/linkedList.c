@@ -278,6 +278,10 @@ void eliminate_student_from_department(Department *current_department,
                                        Student **queue_head)
 {
     while (current_department) {
+#if DEBUG
+        printf("department %lld in eliminate_student_from_department\n",
+               current_department->ID);
+#endif
         if (current_department->quota < current_department->total_student) {
             // need to eliminate
             /*
@@ -292,10 +296,14 @@ void eliminate_student_from_department(Department *current_department,
 
             if (current_department->quota == 0 &&
                 current_department->total_student != 0) { // no quota at all
+#if DEBUG
                 printf("No quota for department %lld\n", current_department->ID);
+#endif
                 current_department->total_student = 0;
                 push_to_queue(queue_head, current_student);
                 current_department->department_student_head = NULL;
+                current_department = current_department->next;
+                continue;
             }
 
             while (current_student) {
@@ -305,6 +313,7 @@ void eliminate_student_from_department(Department *current_department,
                         // update department total_student,show last qualified student grade
                         // data
                         current_department->total_student = count - 1;
+#if DEBUG
                         printf("Last qualified student grade data of department %lld\n",
                                current_department->ID);
                         printf("%15lld %8s %2d %2d %2d %2d %2d %2d %5lld %5lld %5lld %5lld "
@@ -318,6 +327,7 @@ void eliminate_student_from_department(Department *current_department,
                                prev->choice[1].department_ID, prev->choice[2].department_ID,
                                prev->choice[3].department_ID, prev->choice[4].department_ID,
                                prev->choice[5].department_ID, prev->current_result);
+#endif
                         // enqueue the following nodes
                         prev->next = NULL;
                         push_to_queue(queue_head, current_student);
@@ -336,7 +346,9 @@ void eliminate_student_from_department(Department *current_department,
 
 void show_final_result(Department *head)
 {
+
     clear_screen();
+
     printf("---Showing all department's result---\n");
     while (head) {
         /*
